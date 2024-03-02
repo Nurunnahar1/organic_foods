@@ -14,5 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('backend.layouts.app');
+    // return view('backend.layouts.app');
+    return view('frontend.layouts.app');
+});
+Route::get('/backend', function () {
+    // return view('backend.layouts.app');
+    return view('backend.pages.dashboard');
 });
