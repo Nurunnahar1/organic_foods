@@ -5,7 +5,7 @@
                 <div class="owl-carousel vegetable-carousel justify-content-center">
                     <div class="border border-primary rounded position-relative vesitable-item">
                         <div class="vesitable-img">
-                            <img src="img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
+                            <img src="{{ asset('assets/frontend/img/vegetable-item-6.jpg') }}" class="img-fluid w-100 rounded-top" alt="">
                         </div>
                         <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
                         <div class="p-4 rounded-bottom">
@@ -19,7 +19,7 @@
                     </div>
                     <div class="border border-primary rounded position-relative vesitable-item">
                         <div class="vesitable-img">
-                            <img src="img/vegetable-item-1.jpg" class="img-fluid w-100 rounded-top" alt="">
+                            <img src="{{ asset('assets/frontend/img/vegetable-item-1.jpg') }}" class="img-fluid w-100 rounded-top" alt="">
                         </div>
                         <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
                         <div class="p-4 rounded-bottom">
@@ -33,7 +33,7 @@
                     </div>
                     <div class="border border-primary rounded position-relative vesitable-item">
                         <div class="vesitable-img">
-                            <img src="img/vegetable-item-3.png" class="img-fluid w-100 rounded-top bg-light" alt="">
+                            <img src="{{ asset('assets/frontend/img/vegetable-item-3.png') }}" class="img-fluid w-100 rounded-top bg-light" alt="">
                         </div>
                         <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
                         <div class="p-4 rounded-bottom">
@@ -47,7 +47,7 @@
                     </div>
                     <div class="border border-primary rounded position-relative vesitable-item">
                         <div class="vesitable-img">
-                            <img src="img/vegetable-item-4.jpg" class="img-fluid w-100 rounded-top" alt="">
+                            <img src="{{ asset('assets/frontend/img/vegetable-item-4.jpg') }}" class="img-fluid w-100 rounded-top" alt="">
                         </div>
                         <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
                         <div class="p-4 rounded-bottom">
@@ -61,7 +61,7 @@
                     </div>
                     <div class="border border-primary rounded position-relative vesitable-item">
                         <div class="vesitable-img">
-                            <img src="img/vegetable-item-5.jpg" class="img-fluid w-100 rounded-top" alt="">
+                            <img src="{{ asset('assets/frontend/img/vegetable-item-5.jpg') }}" class="img-fluid w-100 rounded-top" alt="">
                         </div>
                         <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
                         <div class="p-4 rounded-bottom">
@@ -75,7 +75,7 @@
                     </div>
                     <div class="border border-primary rounded position-relative vesitable-item">
                         <div class="vesitable-img">
-                            <img src="img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
+                            <img src="{{ asset('assets/frontend/img/vegetable-item-6.jpg') }}" class="img-fluid w-100 rounded-top" alt="">
                         </div>
                         <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
                         <div class="p-4 rounded-bottom">
@@ -89,7 +89,7 @@
                     </div>
                     <div class="border border-primary rounded position-relative vesitable-item">
                         <div class="vesitable-img">
-                            <img src="img/vegetable-item-5.jpg" class="img-fluid w-100 rounded-top" alt="">
+                            <img src="{{ asset('assets/frontend/img/vegetable-item-5.jpg') }}" class="img-fluid w-100 rounded-top" alt="">
                         </div>
                         <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
                         <div class="p-4 rounded-bottom">
@@ -103,7 +103,7 @@
                     </div>
                     <div class="border border-primary rounded position-relative vesitable-item">
                         <div class="vesitable-img">
-                            <img src="img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
+                            <img src="{{ asset('assets/frontend/img/vegetable-item-6.jpg') }}" class="img-fluid w-100 rounded-top" alt="">
                         </div>
                         <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
                         <div class="p-4 rounded-bottom">

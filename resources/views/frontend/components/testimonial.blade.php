@@ -15,7 +15,7 @@
                             </div>
                             <div class="d-flex align-items-center flex-nowrap">
                                 <div class="bg-secondary rounded">
-                                    <img src="img/testimonial-1.jpg" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
+                                    <img src="{{ asset('assets/frontend/img/testimonial-1.jpg') }}" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
                                 </div>
                                 <div class="ms-4 d-block">
                                     <h4 class="text-dark">Client Name</h4>
@@ -40,7 +40,7 @@
                             </div>
                             <div class="d-flex align-items-center flex-nowrap">
                                 <div class="bg-secondary rounded">
-                                    <img src="img/testimonial-1.jpg" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
+                                    <img src="{{ asset('assets/frontend/img/testimonial-1.jpg') }}" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
                                 </div>
                                 <div class="ms-4 d-block">
                                     <h4 class="text-dark">Client Name</h4>
@@ -65,7 +65,7 @@
                             </div>
                             <div class="d-flex align-items-center flex-nowrap">
                                 <div class="bg-secondary rounded">
-                                    <img src="img/testimonial-1.jpg" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
+                                    <img src="{{ asset('assets/frontend/img/testimonial-1.jpg') }}" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
                                 </div>
                                 <div class="ms-4 d-block">
                                     <h4 class="text-dark">Client Name</h4>

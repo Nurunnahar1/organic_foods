@@ -10,7 +10,7 @@
                         <div class="p-4 rounded bg-light">
                             <div class="row align-items-center">
                                 <div class="col-6">
-                                    <img src="img/best-product-1.jpg" class="img-fluid rounded-circle w-100" alt="">
+                                    <img src="{{ asset('assets/frontend/img/best-product-1.jpg') }}" class="img-fluid rounded-circle w-100" alt="">
                                 </div>
                                 <div class="col-6">
                                     <a href="#" class="h5">Organic Tomato</a>
@@ -31,7 +31,7 @@
                         <div class="p-4 rounded bg-light">
                             <div class="row align-items-center">
                                 <div class="col-6">
-                                    <img src="img/best-product-2.jpg" class="img-fluid rounded-circle w-100" alt="">
+                                    <img src="{{ asset('assets/frontend/img/best-product-2.jpg') }}" class="img-fluid rounded-circle w-100" alt="">
                                 </div>
                                 <div class="col-6">
                                     <a href="#" class="h5">Organic Tomato</a>
@@ -52,7 +52,7 @@
                         <div class="p-4 rounded bg-light">
                             <div class="row align-items-center">
                                 <div class="col-6">
-                                    <img src="img/best-product-3.jpg" class="img-fluid rounded-circle w-100" alt="">
+                                    <img src="{{ asset('assets/frontend/img/best-product-3.jpg') }}" class="img-fluid rounded-circle w-100" alt="">
                                 </div>
                                 <div class="col-6">
                                     <a href="#" class="h5">Organic Tomato</a>
@@ -73,7 +73,7 @@
                         <div class="p-4 rounded bg-light">
                             <div class="row align-items-center">
                                 <div class="col-6">
-                                    <img src="img/best-product-4.jpg" class="img-fluid rounded-circle w-100" alt="">
+                                    <img src="{{ asset('assets/frontend/img/best-product-4.jpg') }}" class="img-fluid rounded-circle w-100" alt="">
                                 </div>
                                 <div class="col-6">
                                     <a href="#" class="h5">Organic Tomato</a>
@@ -94,7 +94,7 @@
                         <div class="p-4 rounded bg-light">
                             <div class="row align-items-center">
                                 <div class="col-6">
-                                    <img src="img/best-product-5.jpg" class="img-fluid rounded-circle w-100" alt="">
+                                    <img src="{{ asset('assets/frontend/img/best-product-5.jpg') }}" class="img-fluid rounded-circle w-100" alt="">
                                 </div>
                                 <div class="col-6">
                                     <a href="#" class="h5">Organic Tomato</a>
@@ -115,7 +115,7 @@
                         <div class="p-4 rounded bg-light">
                             <div class="row align-items-center">
                                 <div class="col-6">
-                                    <img src="img/best-product-6.jpg" class="img-fluid rounded-circle w-100" alt="">
+                                    <img src="{{ asset('assets/frontend/img/best-product-6.jpg') }}" class="img-fluid rounded-circle w-100" alt="">
                                 </div>
                                 <div class="col-6">
                                     <a href="#" class="h5">Organic Tomato</a>
@@ -134,7 +134,7 @@
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="text-center">
-                            <img src="img/fruite-item-1.jpg" class="img-fluid rounded" alt="">
+                            <img src="{{ asset('assets/frontend/img/fruite-item-1.jpg"') }} class="img-fluid rounded" alt="">
                             <div class="py-4">
                                 <a href="#" class="h5">Organic Tomato</a>
                                 <div class="d-flex my-3 justify-content-center">
@@ -151,7 +151,7 @@
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="text-center">
-                            <img src="img/fruite-item-2.jpg" class="img-fluid rounded" alt="">
+                            <img src="{{ asset('assets/frontend/img/fruite-item-2.jpg"') }} class="img-fluid rounded" alt="">
                             <div class="py-4">
                                 <a href="#" class="h5">Organic Tomato</a>
                                 <div class="d-flex my-3 justify-content-center">
@@ -168,7 +168,7 @@
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="text-center">
-                            <img src="img/fruite-item-3.jpg" class="img-fluid rounded" alt="">
+                            <img src="{{ asset('assets/frontend/img/fruite-item-3.jpg"') }} class="img-fluid rounded" alt="">
                             <div class="py-4">
                                 <a href="#" class="h5">Organic Tomato</a>
                                 <div class="d-flex my-3 justify-content-center">
@@ -185,7 +185,7 @@
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="text-center">
-                            <img src="img/fruite-item-4.jpg" class="img-fluid rounded" alt="">
+                            <img src="{{ asset('assets/frontend/img/fruite-item-4.jpg"') }} class="img-fluid rounded" alt="">
                             <div class="py-2">
                                 <a href="#" class="h5">Organic Tomato</a>
                                 <div class="d-flex my-3 justify-content-center">
