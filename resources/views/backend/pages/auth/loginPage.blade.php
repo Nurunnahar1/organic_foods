@@ -44,16 +44,25 @@ License: For each use you must have a valid license purchased only from above li
                                         <a href="#"
                                             class="noble-ui-logo logo-light d-block mb-2">Organic<span>Foods</span></a>
                                         <h5 class="text-muted fw-normal mb-4">Welcome back! Log in to your account.</h5>
-                                        <form class="forms-sample">
+
+                                        <form class="forms-sample" action="{{ route('admin.login') }}" method="post">
+                                            @csrf
                                             <div class="mb-3">
-                                                <label for="userEmail" class="form-label">Email address</label>
-                                                <input type="email" class="form-control" id="userEmail"
-                                                    placeholder="Email">
+                                                <label for="email" class="form-label">Email address</label>
+                                                <input type="email" class="form-control
+                                                 @error('email') is-invalid"    @enderror" id="email" name="email"  placeholder="Email">
+                                                 @error('email')
+                                                     <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                                 @enderror
                                             </div>
                                             <div class="mb-3">
-                                                <label for="userPassword" class="form-label">Password</label>
-                                                <input type="password" class="form-control" id="userPassword"
-                                                    autocomplete="current-password" placeholder="Password">
+                                                <label for="password" class="form-label">Password</label>
+                                                <input type="password" class="form-control" id="password"
+                                                    autocomplete="current-password" placeholder="Password"  @error('password') is-invalid"    @enderror" id="password" name="password">
+
+                                                    @error('password')
+                                                     <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                                 @enderror
                                             </div>
                                             <div class="form-check mb-3">
                                                 <input type="checkbox" class="form-check-input" id="authCheck">
@@ -62,11 +71,12 @@ License: For each use you must have a valid license purchased only from above li
                                                 </label>
                                             </div>
                                             <div>
-                                                <a href="../../dashboard.html"
-                                                    class="btn btn-primary me-2 mb-2 mb-md-0 text-white">Login</a>
+                                                {{-- <a href="../../dashboard.html"  class="btn btn-primary me-2 mb-2  mb-md-0 text-white">Login</a> --}}
+                                                <button type="submit" class="btn btn-primary me-2 mb-2  mb-md-0 text-white">Login</button>
 
                                             </div>
                                         </form>
+
                                     </div>
                                 </div>
                             </div>
