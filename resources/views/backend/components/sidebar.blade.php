@@ -13,7 +13,7 @@
            <ul class="nav">
                <li class="nav-item nav-category">Main</li>
                <li class="nav-item">
-                   <a href="dashboard.html" class="nav-link">
+                   <a href="{{ route('admin.dashboard') }}" class="nav-link">
                        <i class="link-icon" data-feather="box"></i>
                        <span class="link-title">Dashboard</span>
                    </a>
@@ -52,29 +52,19 @@
                    <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" role="button"
                        aria-expanded="false" aria-controls="general-pages">
                        <i class="link-icon" data-feather="book"></i>
-                       <span class="link-title">Special pages</span>
+                       <span class="link-title">Category</span>
                        <i class="link-arrow" data-feather="chevron-down"></i>
                    </a>
                    <div class="collapse" id="general-pages">
                        <ul class="nav sub-menu">
                            <li class="nav-item">
-                               <a href="pages/general/blank-page.html" class="nav-link">Blank page</a>
+                               <a href="{{ route('category.index') }}" class="nav-link">Category List</a>
                            </li>
                            <li class="nav-item">
-                               <a href="pages/general/faq.html" class="nav-link">Faq</a>
+                               <a href="{{ route('category.create') }}" class="nav-link">Category Create</a>
                            </li>
-                           <li class="nav-item">
-                               <a href="pages/general/invoice.html" class="nav-link">Invoice</a>
-                           </li>
-                           <li class="nav-item">
-                               <a href="pages/general/profile.html" class="nav-link">Profile</a>
-                           </li>
-                           <li class="nav-item">
-                               <a href="pages/general/pricing.html" class="nav-link">Pricing</a>
-                           </li>
-                           <li class="nav-item">
-                               <a href="pages/general/timeline.html" class="nav-link">Timeline</a>
-                           </li>
+                         
+                           
                        </ul>
                    </div>
                </li>

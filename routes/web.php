@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\TestimonialController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\LoginController;
 use App\Http\Controllers\Backend\CategoryController;
@@ -23,5 +24,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
     Route::resource('category', CategoryController::class);
+    Route::resource('testimonial', TestimonialController::class);
 
 });

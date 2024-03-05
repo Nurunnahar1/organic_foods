@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 @section('admin_title')
-    Category index
+    Testimonial index
 @endsection
 
 @push('admin_style')
@@ -14,47 +14,48 @@
 @section('admin_content')
     <div class="page-content">
 
-        <h3>Category List Table</h3>
+        <h3>Testimonial List Table</h3>
         <div class="col-12 mb-5">
             <div class="d-flex justify-content-end">
                 <a href="{{ route('category.create') }}" class="btn btn-primary">
                     <i class="fas fa-plus-circle"></i>
-                    Add New Category
+                    Add New Testimonial
                 </a>
             </div>
         </div>
 
         <div class="row">
-
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-
                         <div class="table-responsive">
                             <table id="dataTable" class="table table-striped" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Image</th>
                                         <th>Last Updated</th>
-                                        <th>Category Name</th>
-                                        <th>Category Slug</th>
+                                        <th>Client Name</th>
+                                        <th>Client name slug</th>
+                                        <th>Client Designation</th>
+                                        <th>Client Image</th>
                                         <th>Action</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($categories as $key => $category)
+                                    @foreach ($testimonials as $key => $testimonial)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
-                                            <td><img src="" alt=""></td>
-                                            <td>{{ $category->updated_at->format('d M Y') }}</td>
-                                            <td>{{ $category->title }}</td>
-                                            <td>{{ $category->slug }}</td>
+                                            <td>{{ $testimonial->updated_at->format('d M Y') }}</td>
+                                            <td>{{ $testimonial->client_name }}</td>
+                                            <td>{{ $testimonial->client_name_slug }}</td>
+                                            <td>{{ $testimonial->client_designation }}</td>
+                                            <td>{{ $testimonial->client_image }}</td>
                                             <td class="btn-group">
-                                                <a href="{{ route('category.edit', $category->slug) }}"
-                                                    class="btn btn-primary">Edit</a>
-                                                <form action="{{ route('category.destroy', $category->slug) }}"
+                                                <a href="{{ route('testimonial.edit', $testimonial->client_name_slug) }}"
+                                                    class="btn btn-primary btn-group">Edit</a>
+                                                <form
+                                                    action="{{ route('testimonial.destroy', $testimonial->client_name_slug) }}"
                                                     method="post">
                                                     @csrf
                                                     @method('DELETE')
@@ -66,13 +67,11 @@
                                     @endforeach
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
 @push('admin_script')
