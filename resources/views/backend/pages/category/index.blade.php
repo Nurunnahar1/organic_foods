@@ -55,7 +55,7 @@
                                             <td>{{ $category->title }}</td>
                                             <td>{{ $category->slug }}</td>
                                             <td>
-                                                <a href="">Edit</a>    
+                                                <a href="{{ route('category.edit', $category->slug) }}">Edit</a>    
                                                 <a href="">Delete</a>    
                                             </td> 
                                         </tr>

@@ -23,7 +23,7 @@
 
   <link rel="shortcut icon" href="{{ asset('assets/backend/images/favicon.png') }}" />
 
-
+<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css" />
 
 
 

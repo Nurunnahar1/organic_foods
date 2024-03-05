@@ -12,11 +12,16 @@
 <script src="{{ asset('assets/backend/js/template.js') }}"></script>
 <!-- endinject -->
 
+ 
+
+
 <!-- Custom js for this page -->
 <script src="{{ asset('assets/backend/js/dashboard-dark.js') }} "></script>
 <!-- End custom js for this page -->
 
-
+<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+        {!! Toastr::message() !!}
 {{-- page specific script start --}}
 @stack('admin_script')
 {{-- page specific script end --}}
