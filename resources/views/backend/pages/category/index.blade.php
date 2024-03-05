@@ -55,9 +55,15 @@
                                             <td>{{ $category->title }}</td>
                                             <td>{{ $category->slug }}</td>
                                             <td>
-                                                <a href="{{ route('category.edit', $category->slug) }}">Edit</a>    
-                                                <a href="">Delete</a>    
-                                            </td> 
+                                                <a href="{{ route('category.edit', $category->slug) }}">Edit</a>
+                                                <form action="{{ route('category.destroy', $category->slug) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger confirm">Delete</button>
+                                                </form>
+                                                {{-- <a href="{{ route('category.destroy', $category->slug) }}">Delete</a> --}}
+                                            </td>
                                         </tr>
                                     @endforeach
 
@@ -88,6 +94,32 @@
             $('#dataTable').DataTable({
                 pagingType: 'first_last_numbers',
             });
+
+            $('.confirm').click(function(event) {
+                let form = $(this).closest('form');
+                event.preventDefault();
+
+
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                    }
+                });
+            })
 
 
         });

@@ -12,7 +12,7 @@
 <script src="{{ asset('assets/backend/js/template.js') }}"></script>
 <!-- endinject -->
 
- 
+
 
 
 <!-- Custom js for this page -->
@@ -20,8 +20,10 @@
 <!-- End custom js for this page -->
 
 <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-        <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-        {!! Toastr::message() !!}
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+{!! Toastr::message() !!}
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 {{-- page specific script start --}}
 @stack('admin_script')
 {{-- page specific script end --}}

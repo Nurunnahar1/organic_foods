@@ -124,8 +124,11 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $slug)
     {
-        //
+         $category = Category::whereSlug($slug)->first()->delete();
+        // return $category;
+        Toastr::success('Category delete successfully');
+        return redirect()->route('category.index');
     }
 }
