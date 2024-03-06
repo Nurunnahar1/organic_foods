@@ -2,7 +2,8 @@
 @section('admin_title')
     Category create
 @endsection
-
+@push('admin_style')
+@endpush
 @section('admin_content')
     <div class="page-content">
 
@@ -24,22 +25,41 @@
                 <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                        <label for="title" class="form-label">Category Name</label>
-                        <input type="text" class="form-control @error('title') is-invalid  @enderror" id="title"
-                            name="title">
-                        @error('title')
+                        <label for="client_name" class="form-label">Client Name</label>
+                        <input type="text" class="form-control @error('client_name') is-invalid  @enderror"
+                            id="client_name" name="client_name">
+                        @error('client_name')
                             <span class="invalid-feedback"><strong>{{ $message }}</strong></span>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="category_image" class="form-label">Category Image</label>
-                        <input type="file" class="form-control @error('category_image') is-invalid  @enderror"
-                            id="category_image" name="category_image">
-                        @error('category_image')
+                        <label for="client_designation" class="form-label">Client Designation</label>
+                        <input type="text" class="form-control @error('client_designation') is-invalid  @enderror"
+                            id="client_designation" name="client_designation">
+                        @error('client_designation')
+                            <span class="invalid-feedback"><strong>{{ $message }}</strong></span>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="client_message" class="form-label">Client Message</label>
+                        <input type="text" class="form-control @error('client_message') is-invalid  @enderror"
+                            id="client_message" name="client_message">
+                        @error('client_message')
                             <span class="invalid-feedback"><strong>{{ $message }}</strong></span>
                         @enderror
                     </div>
 
+
+
+
+
+                    <img class="w-10" id="preImg" src="{{ asset('uploads/testimonial/default.jpg') }}" />
+
+                    <br />
+
+                    <label class="form-label">Client Image</label>
+                    <input oninput="preImg.src=window.URL.createObjectURL(this.files[0])" type="file"
+                        class="form-control" id="previewLink">
 
                     <button type="submit" class="btn btn-primary">Store</button>
                 </form>
@@ -50,3 +70,5 @@
 
     </div>
 @endsection
+@push('admin_script')
+@endpush

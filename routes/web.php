@@ -19,9 +19,9 @@ Route::prefix('admin/')->group(function () {
     Route::post('login', [LoginController::class, 'login'])->name('admin.login');
     Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
-});
+    Route::middleware(['auth'])->group(function () {
+        Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
+    });
 
     Route::resource('category', CategoryController::class);
     Route::resource('testimonial', TestimonialController::class);

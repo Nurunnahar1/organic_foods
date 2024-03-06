@@ -17,7 +17,7 @@
         <h3>Testimonial List Table</h3>
         <div class="col-12 mb-5">
             <div class="d-flex justify-content-end">
-                <a href="{{ route('category.create') }}" class="btn btn-primary">
+                <a href="{{ route('testimonial.create') }}" class="btn btn-primary">
                     <i class="fas fa-plus-circle"></i>
                     Add New Testimonial
                 </a>
