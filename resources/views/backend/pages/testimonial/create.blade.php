@@ -1,18 +1,18 @@
 @extends('backend.layouts.app')
 @section('admin_title')
-    Category create
+    testimonial create
 @endsection
 @push('admin_style')
 @endpush
 @section('admin_content')
     <div class="page-content">
 
-        <h3>Category Create</h3>
+        <h3>testimonial Create</h3>
         <div class="col-12 mb-5">
             <div class="d-flex justify-content-end">
                 <a href="{{ route('category.index') }}" class="btn btn-primary">
                     <i class="fas fa-plus-circle"></i>
-                    Back to Category Index
+                    Back to testimonial Index
                 </a>
             </div>
         </div>
@@ -22,8 +22,9 @@
 
             <div class="col-md-10">
 
-                <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('testimonial.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
+                    @method('POST')
                     <div class="mb-3">
                         <label for="client_name" class="form-label">Client Name</label>
                         <input type="text" class="form-control @error('client_name') is-invalid  @enderror"
@@ -59,7 +60,7 @@
 
                     <label class="form-label">Client Image</label>
                     <input oninput="preImg.src=window.URL.createObjectURL(this.files[0])" type="file"
-                        class="form-control" id="previewLink">
+                        class="form-control" id="previewLink" name="client_image">
 
                     <button type="submit" class="btn btn-primary">Store</button>
                 </form>

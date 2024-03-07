@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Testimonial extends Model
 {
     use HasFactory, SoftDeletes ;
-    protected $guarded = ['id'];
+    protected $fillable = ['client_name', 'client_name_slug', 'client_designation', 'client_message', 'client_image'];
 }
