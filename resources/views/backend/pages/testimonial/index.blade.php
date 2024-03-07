@@ -50,7 +50,12 @@
                                             <td>{{ $testimonial->client_name }}</td>
                                             <td>{{ $testimonial->client_name_slug }}</td>
                                             <td>{{ $testimonial->client_designation }}</td>
-                                            <td>{{ $testimonial->client_image }}</td>
+                                            {{-- <td>{{ $testimonial->client_image }}</td> --}}
+                                            <td>
+                                                <img src="{{ asset('uploads/testimonial') }}/{{ $testimonial->client_image }}"
+                                                    alt="" class="img-fluid rounded-circle">
+
+                                            </td>
                                             <td class="btn-group">
                                                 <a href="{{ route('testimonial.edit', $testimonial->client_name_slug) }}"
                                                     class="btn btn-primary btn-group">Edit</a>

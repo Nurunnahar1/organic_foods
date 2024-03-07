@@ -37,7 +37,7 @@ class TestimonialController extends Controller
             'client_name'=>'required|string|max:255',
             'client_designation'=>'required|string|max:255',
             'client_message'=>'required|string',
-            'client_image'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' 
+            'client_image'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:1024' 
         ]);
         $imageName = null;
         // Handle image upload
