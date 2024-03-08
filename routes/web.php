@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\TestimonialController;
+use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\LoginController;
 use App\Http\Controllers\Backend\CategoryController;
@@ -8,11 +9,11 @@ use App\Http\Controllers\Backend\DashboardController;
 
  
 
-Route::get('/', function () { 
-    return view('frontend.layouts.app');
-});
+// Route::get('/', function () { 
+//     return view('frontend.pages.home');
+// });
  
-
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::prefix('admin/')->group(function () {
     Route::get('login', [LoginController::class, 'loginPage'])->name('admin.loginPage');
