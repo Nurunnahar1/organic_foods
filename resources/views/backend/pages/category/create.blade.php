@@ -32,9 +32,13 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="category_image" class="form-label">Category Image</label>
-                        <input type="file" class="form-control @error('category_image') is-invalid  @enderror"
-                            id="category_image" name="category_image">
+                        <img class="w-10" id="preImg" src="{{ asset('uploads/category/default.jpg') }}" />
+
+                    <br />
+
+                    <label class="form-label">Client Image</label>
+                    <input oninput="preImg.src=window.URL.createObjectURL(this.files[0])" type="file"
+                        class="form-control" id="previewLink" name="category_image">
                         @error('category_image')
                             <span class="invalid-feedback"><strong>{{ $message }}</strong></span>
                         @enderror

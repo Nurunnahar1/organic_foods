@@ -33,48 +33,59 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'title'=>'required|string|max:255|unique:categories,title',
-            'category_image'=>'nullable|image',
-        ]);
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'title'=>'required|string|max:255|unique:categories,title',
+    //         'category_image'=>'nullable|image',
+    //     ]);
 
-        $category = Category::create([
-            'title'=>$request->title,
-            'slug'=>Str::slug($request->title)
-        ]);
+    //        $imageName = null; 
+    //        if ($request->hasFile('category_image')) {
+    //        $image = $request->file('category_image');
+    //        $imageName = time().'.'.$image->getClientOriginalExtension();
+    //        $image->move('uploads/category', $imageName);
+    //        }
 
-        // $this->image_upload($request, $category->id);
+    //     $category = Category::create([
+    //         'title'=>$request->title,
+    //         'slug'=>Str::slug($request->title),
+    //         'category_image'=>$request->imageName
+    //     ]);
 
-        Toastr::success('Category created successfully');
-        return redirect()->route('category.index');
+    //     // $this->image_upload($request, $category->id);
+
+    //     Toastr::success('Category created successfully');
+    //     return redirect()->route('category.index');
 
         
+    // }
+
+
+    public function store(Request $request)
+    {
+    $request->validate([
+    'title' => 'required|string|max:255|unique:categories,title',
+    'category_image' => 'nullable|image',
+    ]);
+
+    $imageName = null;
+    if ($request->hasFile('category_image')) {
+    $image = $request->file('category_image');
+    $imageName = time().'.'.$image->getClientOriginalExtension();
+    $image->move('uploads/category', $imageName);
     }
 
-    // function image_upload($request, $item_id){
-    //     $category = Category::findorFail($item_id);
+    $category = Category::create([
+    'title' => $request->title,
+    'slug' => Str::slug($request->title),
+    'category_image' => $imageName // Corrected here
+    ]);
 
-    //     if($request->hasFile('category_image')){
-    //     // dd($request->all());
-    //         if($category->category_image !='default-image.jpg'){
-    //             $photo_location = 'public/uploads/category/';
-    //             $old_photo_location = $photo_location.$category->category_image;
-    //             unlink(base_path($old_photo_location));
-    //         }
-    //         $photo_location = 'public/uploads/category/';
-    //         $uploaded_photo = $request->file('category_image');
-    //         $new_photo_name = $category->id.'.'.$uploaded_photo->getClientOriginalExtension();
-    //         $new_photo_location = $photo_location.$new_photo_name;
-    //         Image::make($uploaded_photo)->resize(105,105)->save(base_path($new_photo_location),40);
-    //         $check = $category->update([  'category_image' => $new_photo_name, ]);
-    //     }
-    // }
-    /**
-     * Display the specified resource.
-     */
-
+    Toastr::success('Category created successfully');
+    return redirect()->route('category.index');
+    }
+ 
 
  
 

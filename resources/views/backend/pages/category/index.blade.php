@@ -38,7 +38,7 @@
                                         <th>Image</th>
                                         <th>Last Updated</th>
                                         <th>Category Name</th>
-                                        <th>Category Slug</th>
+                                        {{-- <th>Category Slug</th> --}}
                                         <th>Action</th>
 
                                     </tr>
@@ -47,10 +47,14 @@
                                     @foreach ($categories as $key => $category)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
-                                            <td><img src="" alt=""></td>
+                                            <td>
+                                                <img src="{{ asset('uploads/category') }}/{{ $category->category_image }}"
+                                                    alt="" class="img-fluid rounded-circle">
+
+                                            </td>
                                             <td>{{ $category->updated_at->format('d M Y') }}</td>
                                             <td>{{ $category->title }}</td>
-                                            <td>{{ $category->slug }}</td>
+                                            {{-- <td>{{ $category->slug }}</td> --}}
                                             <td class="btn-group">
                                                 <a href="{{ route('category.edit', $category->slug) }}"
                                                     class="btn btn-primary">Edit</a>
