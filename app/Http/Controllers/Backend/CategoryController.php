@@ -30,36 +30,7 @@ class CategoryController extends Controller
         return view('backend.pages.category.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'title'=>'required|string|max:255|unique:categories,title',
-    //         'category_image'=>'nullable|image',
-    //     ]);
-
-    //        $imageName = null; 
-    //        if ($request->hasFile('category_image')) {
-    //        $image = $request->file('category_image');
-    //        $imageName = time().'.'.$image->getClientOriginalExtension();
-    //        $image->move('uploads/category', $imageName);
-    //        }
-
-    //     $category = Category::create([
-    //         'title'=>$request->title,
-    //         'slug'=>Str::slug($request->title),
-    //         'category_image'=>$request->imageName
-    //     ]);
-
-    //     // $this->image_upload($request, $category->id);
-
-    //     Toastr::success('Category created successfully');
-    //     return redirect()->route('category.index');
-
-        
-    // }
+  
 
 
     public function store(Request $request)
@@ -108,33 +79,44 @@ class CategoryController extends Controller
         return view('backend.pages.category.edit',compact('category'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $slug)
-    {
-          $request->validate([
-          'title'=>'required|string|max:255',
-        //   'category_image'=>'nullable|image',
-          ]);
+ 
 
-          $category = Category::whereSlug($slug)->first();
+     public function update(Request $request, string $slug)
+     {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'category_image' => 'nullable|image',
+        ]);
 
-          $category->update([
-            'title'=>$request->title,
-            'slug'=>Str::slug($request->title),
-            'is_active'=>$request->filled('is_active'),
-          ]);
+        $category = Category::whereSlug($slug)->firstOrFail();
 
-          // $this->image_upload($request, $category->id);
+        // Check if a new image is provided
+        if ($request->hasFile('category_image')) {
+            // Delete the previous image if it exists
+            if ($category->category_image && file_exists(public_path('uploads/category/' . $category->category_image))) {
+                 unlink(public_path('uploads/category/' . $category->category_image));
+            }
 
-          Toastr::success('Category update successfully');
-          return redirect()->route('category.index');
-    }
+            // Upload the new image
+            $image = $request->file('category_image');
+            $imageName = time().'.'.$image->getClientOriginalExtension();
+            $image->move('uploads/category', $imageName);
 
-    /**
-     * Remove the specified resource from storage.
-     */
+            // Assign the new image name to category_image
+            $category->category_image = $imageName;
+        }
+
+        // Update category information
+        $category->update([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'is_active' => $request->filled('is_active'),
+        ]);
+
+        Toastr::success('Category updated successfully');
+        return redirect()->route('category.index');
+     }
+
     public function destroy(string $slug)
     {
          $category = Category::whereSlug($slug)->first()->delete();

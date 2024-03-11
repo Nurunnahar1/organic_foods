@@ -21,36 +21,45 @@
 
             <div class="col-md-10">
 
-                <form action="{{ route('category.update',$category->slug) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('category.update', $category->slug) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="mb-3">
                         <label for="title" class="form-label">Category Name</label>
-                        <input type="text" class="form-control @error('title') is-invalid  @enderror" value="{{ $category->title }}" id="title"
-                            name="title">
+                        <input type="text" class="form-control @error('title') is-invalid  @enderror"
+                            value="{{ $category->title }}" id="title" name="title">
                         @error('title')
                             <span class="invalid-feedback"><strong>{{ $message }}</strong></span>
                         @enderror
                     </div>
+
+
                     <div class="mb-3">
-                        <label for="category_image" class="form-label">Category Image</label>
-                        <input type="file" class="form-control @error('category_image') is-invalid  @enderror"
-                            id="category_image" name="category_image">
+                        <img class="w-10" id="preImg"
+                            src="{{ asset('uploads/category/' . $category->category_image) }}" />
+
+                        <br />
+
+                        <label class="form-label">Client Image</label>
+                        <input oninput="preImg.src=window.URL.createObjectURL(this.files[0])" type="file"
+                            class="form-control" id="previewLink" name="category_image">
                         @error('category_image')
                             <span class="invalid-feedback"><strong>{{ $message }}</strong></span>
                         @enderror
                     </div>
 
-                      <div class="mb-3 form-check form-switch ">
-                            <input type="checkbox" class="form-check-input" name="is_active" role="switch"
-                                id="activeStatus" @if ($category->is_active) checked @endif>
-                            <label for="activeStatus" class="form-check-label">Active or Inactive</label>
-                            @error('is_active')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
+
+
+                    <div class="mb-3 form-check form-switch ">
+                        <input type="checkbox" class="form-check-input" name="is_active" role="switch" id="activeStatus"
+                            @if ($category->is_active) checked @endif>
+                        <label for="activeStatus" class="form-check-label">Active or Inactive</label>
+                        @error('is_active')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
 
 
                     <button type="submit" class="btn btn-primary">Update</button>
