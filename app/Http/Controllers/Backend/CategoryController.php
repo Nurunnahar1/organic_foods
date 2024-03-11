@@ -119,9 +119,18 @@ class CategoryController extends Controller
 
     public function destroy(string $slug)
     {
-         $category = Category::whereSlug($slug)->first()->delete();
-        // return $category;
-        Toastr::success('Category delete successfully');
+        $category = Category::whereSlug($slug)->firstOrFail();
+
+        // Delete the associated image if it exists
+        if ($category->category_image && file_exists(public_path('uploads/category/' . $category->category_image))) {
+            unlink(public_path('uploads/category/' . $category->category_image));
+        }
+
+        // Delete the category from the database
+        $category->delete();
+
+        Toastr::success('Category deleted successfully');
         return redirect()->route('category.index');
     }
+
 }
