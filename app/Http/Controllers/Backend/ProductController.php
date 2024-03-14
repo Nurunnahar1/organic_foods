@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\Product;
+use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 
 class ProductController extends Controller
 {
@@ -34,7 +36,41 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'category_id'=>'required|numeric',
+            'name'=>'required|string|max:255',
+            'product_price'=>'required|numeric|min:0',
+            'product_code'=>'required|string|unique:products,product_code',
+            'product_stock'=>'required|numeric|min:1',
+            'alert_quantity'=>'required|numeric|min:1',
+            'short_description'=>'nullable|string',
+            'long_description'=>'nullable|string',
+            'additional_info'=>'nullable|string',
+            'product_image'=>'required|image|max:1024',
+        ]);
+
+        $imageName = null;
+        if ($request->hasFile('product_image')) {
+            $image = $request->file('product_image');
+            $imageName = time().'.'.$image->getClientOriginalExtension();
+            $image->move('uploads/product', $imageName);
+        }
+
+        $product = Product::create([
+            'category_id'=>$request->category_id ,
+            'name'=>$request->name,
+            'slug'=>Str::slug($request->name) ,
+            'product_code'=>$request->product_code ,
+            'product_price'=>$request->product_price ,
+            'product_stock'=>$request->product_stock ,
+            'alert_quantity'=>$request->alert_quantity ,
+            'short_description'=>$request->short_description ,
+            'long_description'=>$request->long_description ,
+            'additional_info'=>$request->additional_info ,
+            'product_image' => $imageName
+        ]);
+        Toastr::success('Product created successfully');
+        return redirect()->route('product.index');
     }
 
     /**
