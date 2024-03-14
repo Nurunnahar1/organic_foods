@@ -146,8 +146,19 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $slug)
     {
-        //
+        $product = Product::whereSlug($slug)->first();
+
+        // Delete the associated image if it exists
+        if ($product->product_image && file_exists(public_path('uploads/product/' . $product->product_image))) {
+        unlink(public_path('uploads/product/' . $product->product_image));
+        }
+
+        // Delete the category from the database
+        $product->delete();
+
+        Toastr::success('product deleted successfully');
+        return redirect()->route('product.index');
     }
 }
