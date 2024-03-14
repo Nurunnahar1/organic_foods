@@ -84,17 +84,63 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $slug)
     {
-        //
+        $product = Product::whereSlug($slug)->first();
+        $categories = Category::select(['id', 'title'])->get();
+        return view('backend.pages.product.edit', compact('product', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $slug)
     {
-        //
+          $request->validate([
+            'category_id'=>'required|numeric',
+            'name'=>'required|string|max:255',
+            'product_price'=>'required|numeric|min:0',
+            'product_code'=>'required|string',
+            'product_stock'=>'required|numeric|min:1',
+            'alert_quantity'=>'required|numeric|min:1',
+            'short_description'=>'nullable|string',
+            'long_description'=>'nullable|string',
+            'additional_info'=>'nullable|string',
+            'product_image'=>'required|image|max:1024',
+          ]);
+          $product = Product::whereSlug($slug)->first();
+
+         if ($request->hasFile('product_image')) {
+              // Delete the previous image if it exists
+              if ($product->product_image && file_exists(public_path('uploads/product/' .
+              $product->product_image))) {
+               unlink(public_path('uploads/product/' . $product->product_image));
+              }
+
+              // Upload the new image
+              $image = $request->file('product_image');
+              $imageName = time().'.'.$image->getClientOriginalExtension();
+              $image->move('uploads/product', $imageName);
+
+              // Assign the new image name to product_image
+              $product->product_image = $imageName;
+          }
+
+          $product->update([
+            'category_id'=>$request->category_id ,
+            'name'=>$request->name,
+            'slug'=>Str::slug($request->name) ,
+            'product_code'=>$request->product_code ,
+            'product_price'=>$request->product_price ,
+            'product_stock'=>$request->product_stock ,
+            'alert_quantity'=>$request->alert_quantity ,
+            'short_description'=>$request->short_description ,
+            'long_description'=>$request->long_description ,
+            'additional_info'=>$request->additional_info ,
+         ]);
+
+         Toastr::success('Product update successfully');
+         return redirect()->route('product.index');
     }
 
     /**

@@ -35,26 +35,26 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-    $request->validate([
-    'title' => 'required|string|max:255|unique:categories,title',
-    'category_image' => 'nullable|image',
-    ]);
+        $request->validate([
+            'title' => 'required|string|max:255|unique:categories,title',
+            'category_image' => 'nullable|image',
+        ]);
 
-    $imageName = null;
-    if ($request->hasFile('category_image')) {
-    $image = $request->file('category_image');
-    $imageName = time().'.'.$image->getClientOriginalExtension();
-    $image->move('uploads/category', $imageName);
-    }
+        $imageName = null;
+        if ($request->hasFile('category_image')) {
+            $image = $request->file('category_image');
+            $imageName = time().'.'.$image->getClientOriginalExtension();
+            $image->move('uploads/category', $imageName);
+        }
 
-    $category = Category::create([
-    'title' => $request->title,
-    'slug' => Str::slug($request->title),
-    'category_image' => $imageName // Corrected here
-    ]);
+        $category = Category::create([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'category_image' => $imageName // Corrected here
+        ]);
 
-    Toastr::success('Category created successfully');
-    return redirect()->route('category.index');
+        Toastr::success('Category created successfully');
+        return redirect()->route('category.index');
     }
  
 
