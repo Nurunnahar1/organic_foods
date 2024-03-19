@@ -23,6 +23,7 @@
 
                 <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
                     @csrf 
+                    @method('post')
                     <div class="col-12 mb-3">
                         <label for="category_id" class="form-label">Select Category</label>
                         <select name="category_id" class="form-select" id="">
@@ -131,7 +132,8 @@
                             <span class="invalid-feedback"><strong>{{ $message }}</strong></span>
                         @enderror
                     </div>
-
+                    
+                    <input type="file" name="product_multiple_image[]" multiple>
 
                     <button type="submit" class="btn btn-primary">Store</button>
                 </form>

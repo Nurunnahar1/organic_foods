@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Str;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
@@ -48,27 +49,50 @@ class ProductController extends Controller
             'additional_info'=>'nullable|string',
             'product_image'=>'required|image|max:1024',
         ]);
+             $product = Product::create([
+             'category_id'=>$request->category_id ,
+             'name'=>$request->name,
+             'slug'=>Str::slug($request->name) ,
+             'product_code'=>$request->product_code ,
+             'product_price'=>$request->product_price ,
+             'product_stock'=>$request->product_stock ,
+             'alert_quantity'=>$request->alert_quantity ,
+             'short_description'=>$request->short_description ,
+             'long_description'=>$request->long_description ,
+             'additional_info'=>$request->additional_info ,
+            //  'product_image' => $imageName
+             ]);
 
-        $imageName = null;
-        if ($request->hasFile('product_image')) {
-            $image = $request->file('product_image');
-            $imageName = time().'.'.$image->getClientOriginalExtension();
-            $image->move('uploads/product', $imageName);
-        }
+        
+            if ($request->hasFile('product_image')) {
+                $image = $request->file('product_image');
+                // $imageName = time().'.'.$image->getClientOriginalExtension();
+                $imageName = $product->id.'.'.$image->getClientOriginalExtension();
+                $image->move('uploads/product', $imageName);
 
-        $product = Product::create([
-            'category_id'=>$request->category_id ,
-            'name'=>$request->name,
-            'slug'=>Str::slug($request->name) ,
-            'product_code'=>$request->product_code ,
-            'product_price'=>$request->product_price ,
-            'product_stock'=>$request->product_stock ,
-            'alert_quantity'=>$request->alert_quantity ,
-            'short_description'=>$request->short_description ,
-            'long_description'=>$request->long_description ,
-            'additional_info'=>$request->additional_info ,
-            'product_image' => $imageName
-        ]);
+                // Save main product image path to the product
+                $product->product_image = $imageName;
+                $product->save();
+            }
+            if ($request->hasFile('product_multiple_image')) {
+                $flag = 1;
+                foreach ($request->file('product_multiple_image') as $image) {
+                    $imageName = $product->id.'_'.$flag.'.'.$image->getClientOriginalExtension();
+                    // $imageName = $product->id.'.'.$image->getClientOriginalExtension();
+                                
+                    $image->move('uploads/multiple_product_image', $imageName);
+
+                    // Create and save product image record
+                    $productImage = new ProductImage();
+                    $productImage->product_id = $product->id;
+                    $productImage->product_multiple_image = $imageName;
+                    $productImage->save();
+                    
+                     $flag++;
+                }
+            }
+
+   
         Toastr::success('Product created successfully');
         return redirect()->route('product.index');
     }
