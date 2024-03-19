@@ -9,6 +9,7 @@ use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -65,8 +66,7 @@ class ProductController extends Controller
 
         
             if ($request->hasFile('product_image')) {
-                $image = $request->file('product_image');
-                // $imageName = time().'.'.$image->getClientOriginalExtension();
+                $image = $request->file('product_image'); 
                 $imageName = $product->id.'.'.$image->getClientOriginalExtension();
                 $image->move('uploads/product', $imageName);
 
@@ -77,8 +77,7 @@ class ProductController extends Controller
             if ($request->hasFile('product_multiple_image')) {
                 $flag = 1;
                 foreach ($request->file('product_multiple_image') as $image) {
-                    $imageName = $product->id.'_'.$flag.'.'.$image->getClientOriginalExtension();
-                    // $imageName = $product->id.'.'.$image->getClientOriginalExtension();
+                    $imageName = $product->id.'_'.$flag.'.'.$image->getClientOriginalExtension(); 
                                 
                     $image->move('uploads/multiple_product_image', $imageName);
 
@@ -134,21 +133,44 @@ class ProductController extends Controller
           ]);
           $product = Product::whereSlug($slug)->first();
 
-         if ($request->hasFile('product_image')) {
-              // Delete the previous image if it exists
-              if ($product->product_image && file_exists(public_path('uploads/product/' .
-              $product->product_image))) {
-               unlink(public_path('uploads/product/' . $product->product_image));
-              }
+    
+        if ($request->hasFile('product_image')) {
+        // Delete old image if it exists
+            if ($product->product_image) {
+            // You may want to use the storage facade or delete the file manually here
+            Storage::delete('uploads/product/'.$product->product_image);
+            }
 
-              // Upload the new image
-              $image = $request->file('product_image');
-              $imageName = time().'.'.$image->getClientOriginalExtension();
-              $image->move('uploads/product', $imageName);
+            // Upload new image
+            $image = $request->file('product_image');
+            $imageName = $product->id.'.'.$image->getClientOriginalExtension();
+            $image->move('uploads/product', $imageName);
 
-              // Assign the new image name to product_image
-              $product->product_image = $imageName;
-          }
+            // Save new image path to the product
+            $product->product_image = $imageName;
+            $product->save();
+            }
+
+            if ($request->hasFile('product_multiple_image')) {
+                // Delete old multiple images if they exist
+                // You may want to use the storage facade or delete the files manually here
+                Storage::delete('uploads/multiple_product_image/'.$product->id);
+
+                // Upload new multiple images
+                $flag = 1;
+                foreach ($request->file('product_multiple_image') as $image) {
+                $imageName = $product->id.'_'.$flag.'.'.$image->getClientOriginalExtension();
+                $image->move('uploads/multiple_product_image', $imageName);
+
+                // Create and save product image record
+                $productImage = new ProductImage();
+                $productImage->product_id = $product->id;
+                $productImage->product_multiple_image = $imageName;
+                $productImage->save();
+
+                $flag++;
+            }
+        }
 
           $product->update([
             'category_id'=>$request->category_id ,
