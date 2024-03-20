@@ -198,13 +198,23 @@ class ProductController extends Controller
 
         // Delete the associated image if it exists
         if ($product->product_image && file_exists(public_path('uploads/product/' . $product->product_image))) {
-        unlink(public_path('uploads/product/' . $product->product_image));
+            unlink(public_path('uploads/product/' . $product->product_image));
         }
 
-        // Delete the category from the database
+        // Delete old multiple images if they exist
+        $oldMultipleImages = ProductImage::where('product_id', $product->id)->get();
+        foreach ($oldMultipleImages as $oldImage) {
+            $filePath = 'uploads/multiple_product_image/' . $oldImage->product_multiple_image;
+            if (file_exists(public_path($filePath))) {
+                unlink(public_path($filePath));
+            }
+            $oldImage->delete();
+        }
+
+        // Delete the product from the database
         $product->delete();
 
-        Toastr::success('product deleted successfully');
+        Toastr::success('Product deleted successfully');
         return redirect()->route('product.index');
     }
 }
