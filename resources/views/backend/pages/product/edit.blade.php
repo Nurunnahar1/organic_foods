@@ -143,8 +143,19 @@
                             </span>
                         @enderror
                     </div>
-                    <input type="file" name="product_multiple_image[]" multiple
-                        value="{{ $product->product_multiple_image }}">
+
+
+                    <div class="col-12 mb-3">
+                        <label for="product_multiple_image" class="form-label">Product Multiple Image</label>
+                        <input type="file" name="product_multiple_image[]" multiple class="form-control   "
+                            id="product_multiple_image">
+                        @error('product_multiple_image')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                     
 
 
                     <button type="submit" class="btn btn-primary">Store</button>

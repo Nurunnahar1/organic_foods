@@ -216,5 +216,6 @@ class ProductController extends Controller
 
         Toastr::success('Product deleted successfully');
         return redirect()->route('product.index');
+        
     }
 }

@@ -22,7 +22,7 @@
             <div class="col-md-10">
 
                 <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
-                    @csrf 
+                    @csrf
                     @method('post')
                     <div class="col-12 mb-3">
                         <label for="category_id" class="form-label">Select Category</label>
@@ -132,8 +132,19 @@
                             <span class="invalid-feedback"><strong>{{ $message }}</strong></span>
                         @enderror
                     </div>
-                    
-                    <input type="file" name="product_multiple_image[]" multiple>
+
+
+                    <div class="col-12 mb-3">
+                        <label for="product_multiple_image" class="form-label">Product Multiple Image</label>
+                        <input type="file" name="product_multiple_image[]" multiple class="form-control   "
+                            id="product_multiple_image">
+                        @error('product_multiple_image')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+ 
 
                     <button type="submit" class="btn btn-primary">Store</button>
                 </form>
