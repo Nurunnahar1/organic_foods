@@ -13,8 +13,13 @@ use App\Http\Controllers\Backend\DashboardController;
 // Route::get('/', function () { 
 //     return view('frontend.pages.home');
 // });
- 
-Route::get('/', [HomeController::class, 'home'])->name('home');
+
+Route::prefix('')->group(function () {
+    Route::get('/', [HomeController::class, 'home'])->name('home');
+    Route::get('/shop', [HomeController::class, 'shopPage'])->name('shop.page');
+
+});
+
 
 Route::prefix('admin/')->group(function () {
     Route::get('login', [LoginController::class, 'loginPage'])->name('admin.loginPage');

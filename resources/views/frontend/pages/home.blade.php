@@ -12,7 +12,7 @@
      @include('frontend.components.features')
 
 
-     @include('frontend.components.shop')
+     @include('frontend.components.roganic_vegetables')
 
 
      @include('frontend.components.banner')
